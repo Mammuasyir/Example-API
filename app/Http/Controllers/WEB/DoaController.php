@@ -46,7 +46,7 @@ class DoaController extends Controller
     public function Datalogin(Request $request)
     {
         // dd($request);
-        Http::post('https://ictjuara.000webhostapp.com/api/regis', $request->input());
-        return redirect()->back();
+        $response = Http::post('https://ictjuara.000webhostapp.com/api/login', $request->input())->json();
+        return view('datalogin', compact('response'));
     }
 }

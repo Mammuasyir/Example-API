@@ -27,5 +27,5 @@ Route::post('/postingkategory', [DoaController::class, 'Postingkategory']);
 Route::get('/Ict', [IctController::class, 'Ict'])->name('Ict');
 
 Route::get('/login',[DoaController::class, 'login']);
-Route::get('/data-login', [DoaController::class, 'Datalogin']);
+Route::post('/data-login', [DoaController::class, 'Datalogin']);
 

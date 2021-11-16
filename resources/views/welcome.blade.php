@@ -25,6 +25,9 @@
 </head>
  
 <body>
+<div class="container padding">
+        <a href="/login">LOGIN</a>
+    </div>
     <div class="container text-center padding">
         <h1>Doa Harian Lengkap</h1>
         <a href="/post-data">Post Data</a>
