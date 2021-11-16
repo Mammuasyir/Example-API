@@ -13,7 +13,7 @@
 
     <style>
         .padding {
-            padding-top: 100px;
+            padding-top: 70px;
         }
 
         .pd {
@@ -33,6 +33,10 @@
     <div class="container text-center padding">
         <h1>Tambah Kategori</h1>
         <a href="/postingkate">nama_kategori</a>
+    </div>
+
+    <div class="text-center">
+        <a href="/Ict">List Wisata</a>
     </div>
 
     <div class="container pd">

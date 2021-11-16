@@ -25,6 +25,10 @@
 </head>
 
 <body>
+<div class="container text-center padding">
+        <a href="/">Back to Doa</a>
+
+
     <div class="container text-center padding">
         <h1>List Wisata</h1>
     </div>
