@@ -35,7 +35,11 @@
         <a href="/">Back to Doa</a>
 
 
-        <div class="custome">
+        <div class=" container custome ">
+        @if ($response['status'] == 0)
+            <div class="alert alert-danger">{{ $response['message'] }}</div>
+        @endif
+
             <form action="/data-login" method="POST">
                 @csrf
                 <div class="mb-3">
