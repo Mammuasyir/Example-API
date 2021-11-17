@@ -118,7 +118,7 @@ class AuthController extends Controller
 
     public function editProfile(Request $request, $user_id)
     {
-        $user = User::findOrFail($user_id);
+        $user = User::where('id',$user_id)->first();
 
         if (!$user ) {
             return $this->responError(0, "Akun Tidak terdaftar !");
@@ -155,7 +155,7 @@ class AuthController extends Controller
 
     public function changePassword(Request $request, $user_id)
     {
-        $user = User::findOrFail($user_id);
+        $user = User::where('id',$user_id)->first();
 
         if (!$user ) {
             return $this->responError(0, "Akun Tidak terdaftar !");
