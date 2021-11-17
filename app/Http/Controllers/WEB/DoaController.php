@@ -18,7 +18,7 @@ class DoaController extends Controller
     public function Postdata()
     {
         return view('postdata');
-    } 
+    }
 
     public function Posting(Request $request)
     {
@@ -42,19 +42,17 @@ class DoaController extends Controller
     {
         $response['status'] = 1;
         return view('login', compact('response'));
-
     }
 
     public function Datalogin(Request $request)
     {
-        
+
         $response = Http::post('https://ictjuara.000webhostapp.com/api/login', $request->input())->json();
 
         if ($response['status'] == 0) {
-        return view('login', compact('response'));
-    };
+            return view('login', compact('response'));
+        };
 
-    return view('datalogin', compact('response'));
-}
-
+        return view('datalogin', compact('response'));
+    }
 }

@@ -21,8 +21,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::post('/register',[AuthController::class, 'registrasi']);
-Route::post('/login',[AuthController::class, 'login']);  
+Route::post('/login',[AuthController::class, 'login']);
+Route::put('/edit/{user_id}',[AuthController::class, 'editProfile']);
+Route::put('/changepw/{user_id}',[AuthController::class, 'changePassword']);
 
 //CRUD Resto beserta menunya
 Route::post('/add/resto-dan-menu',[RestoranController::class, 'createRestoMenu']); 
 Route::get('/resto/{id}',[RestoranController::class, 'getRestoMenu']); 
+
+// Get semua menu
+Route::get('/menu',[RestoranController::class, 'getAllMenu']); 

@@ -63,10 +63,13 @@ class RestoranController extends Controller
     public function getRestoMenu($id)
     {
 
-        $resto = Restoran::where('id', $id)->get();
+        $resto = Restoran::where('id', $id)->first();
 
-        $data = Menu::where('resto_id', $id)->get();
+        if (!$resto ) {
+            return $this->responError(0, "Data Menu Tidak Ada !");
+        }
 
+        $data = Menu::where('resto_id', $resto->id)->get();
         
         return response()->json([
             'status'    => 1,
@@ -75,6 +78,24 @@ class RestoranController extends Controller
             'menunya'    => $data
         ], HttpFoundationResponse::HTTP_OK);
 
-        
+    }
+
+    public function getAllMenu()
+    {
+        $menu = Menu::all();
+
+        return response()->json([
+            'status'    => 1,
+            'pesan'    => "Berhasil mendapatkan semua menu !",
+            'result'    => $menu
+        ], HttpFoundationResponse::HTTP_OK);
+    }
+
+    public function responError($sts, $msg)
+    {
+        return response()->json([
+            'status'    => $sts,
+            'pesan'     => $msg
+        ], HttpFoundationResponse::HTTP_NOT_FOUND);
     }
 }

@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator as FacadesValidator;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
@@ -15,22 +15,23 @@ class AuthController extends Controller
     public function registrasi(Request $request)
     {
         $psn = [
-            'name.required'     =>"Nama Jangan Kosong",
-            'email.required'    =>"Email Jangan Kosong",
-            'email.unique'      =>"Email Telah Terdaftar",
-            'email.email'      =>"Email Tidak Valid",
-            'password.required' =>"Password Jangan Kosong",
-            'password.min' =>"Password minimal 4"
+            'name.required'     => "Nama Jangan Kosong",
+            'email.required'    => "Email Jangan Kosong",
+            'email.unique'      => "Email Telah Terdaftar",
+            'email.email'       => "Email Tidak Valid",
+            'password.required' => "Password Jangan Kosong",
+            'password.min'      => "Password minimal 4",
+            'password.confirmed' => "Password tidak cocok",
 
         ];
 
-        $validasi = FacadesValidator::make($request->all(),[
-            'name'      =>"required",
-            'email'     =>"required|unique:users|email",
-            'password'  =>"required|min:4|confirmed",
-        ],$psn);
+        $validasi = Validator::make($request->all(), [
+            'name'      => "required",
+            'email'     => "required|unique:users|email",
+            'password'  => "required|min:4|confirmed",
+        ], $psn);
 
-        if($validasi->fails()) {
+        if ($validasi->fails()) {
             $val = $validasi->errors()->all();
             return $this->responError(0, $val[0]);
         }
@@ -44,43 +45,42 @@ class AuthController extends Controller
         ]);
         return response()->json([
             'status'    => 1,
-            'pesan'     => $request->name,'Registrasi Berhasil !',
+            'pesan'     => $request->name, 'Registrasi Berhasil !',
             'data'      => $user
 
-        ],Response::HTTP_OK);
+        ], Response::HTTP_OK);
     }
 
     public function daftar(Request $request)
     {
         $pesan = [
-            'name.required'     =>"Nama Wajib Diisi",
+            'name.required'         => "Nama Wajib Diisi",
+            'password.required'     => "Password Wajib diisi",
+            'password.confirmed'    => "Password confirmasi tidak sesuai",
+            'password.min'          => "Password minimal 4 karakter",
 
-            'password.required' =>"Password Wajib diisi",
-            'password.confirmed' =>"Password confirmasi tidak sesuai",
-            'password.min' =>"Password minimal 4 karakter",
+            'email.required'        => "Email Jangan Kosong",
+            'email.unique'          => "Email Telah Terdaftar",
+            'email.email'           => "Email Tidak Valid",
 
-            'email.required'    =>"Email Jangan Kosong",
-            'email.unique'      =>"Email Telah Terdaftar",
-            'email.email'      =>"Email Tidak Valid",
-            
 
         ];
 
-        $request ->validate([
-            'name' => "required",
-            'email' => "required|email",
-            'password' =>"required"
+        $request->validate([
+            'name'      => "required",
+            'email'     => "required|email",
+            'password'  => "required"
         ], $pesan);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' =>Hash::make($request->password)
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password)
         ]);
 
         return response()->json([
             'status'    => 1,
-            'pesan'     => $request->name,'Registrasi Berhasil !',
+            'pesan'     => $request->name, 'Registrasi Berhasil !',
             'data'      => $user
         ], Response::HTTP_OK);
     }
@@ -89,31 +89,100 @@ class AuthController extends Controller
     {
         $pesan = [
 
-            'password.required' =>"Password Wajib diisi",
-            'email.required'    =>"Email Jangan Kosong",
+            'password.required' => "Password Wajib diisi",
+            'email.required'    => "Email Jangan Kosong",
         ];
 
-        $validasi = FacadesValidator::make($request->all(),[
-            'email'     =>"required",
-            'password'  =>"required",
-        ],$pesan);
+        $validasi = Validator::make($request->all(), [
+            'email'     => "required",
+            'password'  => "required",
+        ], $pesan);
 
-        if($validasi->fails()) {
+        if ($validasi->fails()) {
             $val = $validasi->errors()->all();
             return $this->responError(0, $val[0]);
         }
 
         $user = User::where('email', $request->email)->first();
 
-        if(!$user || !Hash::check($request->password,$user->password)){
+        if (!$user || !Hash::check($request->password, $user->password)) {
             return $this->responError(0, "Login Gagal !");
         }
 
         return response()->json([
             'status'    => 1,
-            'pesan'     => $user->name,'Login Kamuh Berhasil !',
+            'pesan'     => $user->name, 'Login Kamuh Berhasil !',
             'data'      => $user
         ], Response::HTTP_OK);
+    }
+
+    public function editProfile(Request $request, $user_id)
+    {
+        $user = User::findOrFail($user_id);
+
+        $validasi = Validator::make($request->all(), [
+            'name'        => 'required',
+            'email'       => 'required',
+            'alamat'      => 'required',
+            'telp'        => 'required',
+        ]);
+
+        if ($validasi->fails()) {
+            $val = $validasi->errors()->all();
+            return $this->responError(0, $val[0]);
+        }
+
+        // return dd($request);
+
+        $user->update([
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'alamat'        => $request->alamat,
+            'telp'          => $request->telp,
+            'photo'         => $request->photo,
+        ]);
+
+        return response()->json([
+            'status'        => 1,
+            'message'       => "Profile berhasil diupdate ! ",
+            'result'        => $user
+        ], 200);
+    }
+
+    public function changePassword(Request $request, $user_id)
+    {
+        $user = User::findOrFail($user_id);
+
+        if (!(Hash::check($request->password, $user->password))) {
+            return $this->responError(0, "Password salah !");
+        }
+        
+        if(strcmp($request->get('password'),$request->get('new_password')) == 0) {
+            return response()->json([
+                'status'        => 0,
+                'message'       => "Password tidak boleh sama dengan password lama !",
+            ], 400);
+        }
+
+        $validasi = Validator::make($request->all(), [
+            'password'          => 'required',
+            'new_password'      => 'required|confirmed'
+        ]);
+            
+        if ($validasi->fails()) {
+            $val = $validasi->errors()->all();
+            return $this->responError(0, $val[0]);
+        }
+        
+        $user->password = Hash::make($request->new_password);
+            $user->save();
+
+        return response()->json([
+            'status'        => 1,
+            'message'       => "Password Berhasil Diubah !",
+            'result'        => $user
+        ], 200);
+
     }
 
     public function responError($sts, $pesan)
