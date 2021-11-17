@@ -120,6 +120,10 @@ class AuthController extends Controller
     {
         $user = User::findOrFail($user_id);
 
+        if (!$user ) {
+            return $this->responError(0, "Akun Tidak terdaftar !");
+        }
+
         $validasi = Validator::make($request->all(), [
             'name'        => 'required',
             'email'       => 'required',
@@ -153,6 +157,10 @@ class AuthController extends Controller
     {
         $user = User::findOrFail($user_id);
 
+        if (!$user ) {
+            return $this->responError(0, "Akun Tidak terdaftar !");
+        }
+
         if (!(Hash::check($request->password, $user->password))) {
             return $this->responError(0, "Password salah !");
         }
@@ -174,7 +182,7 @@ class AuthController extends Controller
             return $this->responError(0, $val[0]);
         }
         
-        $user->password = Hash::make($request->new_password);
+        $user->password = Hash::make($request->password);
             $user->save();
 
         return response()->json([
