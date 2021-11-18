@@ -182,7 +182,7 @@ class AuthController extends Controller
             return $this->responError(0, $val[0]);
         }
         
-        $user->password = Hash::make($request->password);
+        $user->password = Hash::make($request->new_password);
             $user->save();
 
         return response()->json([
