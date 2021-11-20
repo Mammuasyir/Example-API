@@ -9,11 +9,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Doa Harian</title>
+    <title>Data user</title>
 
     <style>
         .padding {
-            padding-top: 70px;
+            padding-top: 100px;
         }
 
         .pd {
@@ -23,53 +23,39 @@
     </style>
 
 </head>
- 
+
 <body>
-<div class="container padding">
-        <a href="/login">LOGIN</a>
-    </div>
     <div class="container text-center padding">
-        <h1>Doa Harian Lengkap</h1>
-        <a href="/post-data">Post Data</a>
-    </div>
+        <a href="/">Back to Home</a>
 
-    <div class="container text-center padding">
-        <h1>Tambah Kategori</h1>
-        <a href="/postingkate">nama_kategori</a>
-    </div>
 
-    <div class="text-center">
-        <a href="/Ict">List Wisata</a>
-    </div>
-    <div class="text-center">
-        <a href="/my-register">My Register</a>
-    </div>
-    <div class="text-center">
-        <a href="/mylogin">My login</a>
-    </div>
+        <div class="container text-center padding">
+            <h1>Data User</h1>
+        </div>
 
-    <div class="container pd">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Doa</th>
-                    <th scope="col">Ayat</th>
-                    <th scope="col">Latin</th>
-                    <th scope="col">Artinya</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($response as $re)
-                <tr>
-                    <th scope="row">{{$re['id']}}</th>
-                    <td>{{$re['doa']}}</td>
-                    <td>{{$re['ayat']}}</td>
-                    <td>{{$re['latin']}}</td>
-                    <td>{{$re['artinya']}}</td>
-                </tr>
-                @endforeach
-            </tbody>
+        <div class="container pd">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Alamat</th>
+                        <th scope="col">Telp</th>
+                        <th scope="col">Photo</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>{{ $response['data']['id'] }}</td>
+                        <td>{{ $response['data']['email'] }}</td>
+                        <td>{{ $response['data']['name'] }}</td>
+                        <td>{{ $response['data']['alamat'] }}</td>
+                        <td>{{ $response['data']['telp'] }}</td>
+                        <td>{{ $response['data']['photo'] }}</td>
+        </tr>
+        </tbody>
         </table>
     </div>
 

@@ -27,7 +27,17 @@ Route::put('/changepw/{user_id}',[AuthController::class, 'changePassword']);
 
 //CRUD Resto beserta menunya
 Route::post('/add/resto-dan-menu',[RestoranController::class, 'createRestoMenu']); 
-Route::get('/resto/{id}',[RestoranController::class, 'getRestoMenu']); 
+Route::put('/update/resto-dan-menu/{resto_id}',[RestoranController::class, 'updateRestoandMenu']);
+Route::post('/add/menu/{resto_id}',[RestoranController::class, 'createMenu']);
+Route::put('/update/menu/{resto_id}/{menu_id}',[RestoranController::class, 'updateMenu']);
+Route::get('/resto/{id}',[RestoranController::class, 'getRestoMenu']);
+Route::put('/edit/resto/{id}',[RestoranController::class, 'editResto']);
 
 // Get semua menu
 Route::get('/menu',[RestoranController::class, 'getAllMenu']); 
+// Get semua resto
+Route::get('/resto',[RestoranController::class, 'getAllResto']); 
+// Cari menu 
+Route::get('/searchmenu',[RestoranController::class, 'searchMenu']);
+// hapus menu
+Route::delete('/deletemenu/{resto_id}/{menu_id}',[RestoranController::class, 'deleteMenu']);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\WEB\Auth2Controller;
 use App\Http\Controllers\WEB\DoaController;
 use App\Http\Controllers\WEB\IctController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,15 @@ Route::get('/postingkate', [DoaController::class, 'Postingkate']);
 Route::post('/postingkategory', [DoaController::class, 'Postingkategory']); 
 Route::get('/Ict', [IctController::class, 'Ict'])->name('Ict');
 
-Route::get('/login',[DoaController::class, 'login']);
-Route::post('/data-login', [DoaController::class, 'Datalogin']);
+//login api ICT
+Route::get('/login',[Auth2Controller::class, 'login']);
+Route::post('/data-login', [Auth2Controller::class, 'Datalogin']);
+// Register and login api sendiri
+Route::get('/my-register', [Auth2Controller::class, 'Myregister']);
+Route::post('/register', [Auth2Controller::class, 'register']);
+Route::get('/mylogin',[Auth2Controller::class, 'loginMyApi']);
+Route::post('/mydata-login', [Auth2Controller::class, 'DataloginMyApi']);
+Route::put('/editprofile',[Auth2Controller::class, 'editProfile']);
+
+
 
