@@ -60,7 +60,7 @@ class Auth2Controller extends Controller
 
     public function editProfile($user_id)
     {
-        $response = Http::get('https://listwisata.herokuapp.com/api/edit/' . $user_id)->json();
+        $response = Http::get('https://listwisata.herokuapp.com/api/user/' . $user_id)->json();
 
         return view('Auth.editprofile', compact('response'));
     }

@@ -193,13 +193,13 @@ class AuthController extends Controller
 
     }
 
-    public function getAllUser()
+    public function getUser($user_id)
     {
-        $user = User::all();
+        $user = User::where('id', $user_id)->first();
 
         return response()->json([
             'status'    => 1,
-            'pesan'    => "Berhasil mendapatkan semua user !",
+            'pesan'    => "Berhasil mendapatkan user !",
             'result'    => $user
         ], Response::HTTP_OK);
     }
