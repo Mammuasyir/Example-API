@@ -47,15 +47,17 @@ class Auth2Controller extends Controller
         return view('Auth.mylogin', compact('response'));
     }
 
-    public function DataloginMyApi(Request $request)
+    public function DataloginMyApi(Request $request, $user_id)
     {
+        $response2 = Http::get('https://listwisata.herokuapp.com/api/user/' . $user_id)->json();
+
         $response = Http::post('https://listwisata.herokuapp.com/api/login', $request->input())->json();
 
         if ($response['status'] == 0) {
             return view('Auth.mylogin', compact('response'));
         };
 
-        return view('Auth.mydatalogin', compact('response'));
+        return view('Auth.mydatalogin', compact('response', 'response2'));
     }
 
     public function editProfile($user_id)
