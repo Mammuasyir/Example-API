@@ -24,6 +24,7 @@ Route::post('/register',[AuthController::class, 'registrasi']);
 Route::post('/login',[AuthController::class, 'login']);
 Route::put('/edit/{user_id}',[AuthController::class, 'editProfile']);
 Route::put('/changepw/{user_id}',[AuthController::class, 'changePassword']);
+Route::get('/alluser',[AuthController::class, 'getAllUser']);
 
 //CRUD Resto beserta menunya
 Route::post('/add/resto-dan-menu',[RestoranController::class, 'createRestoMenu']); 

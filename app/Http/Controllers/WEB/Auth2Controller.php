@@ -58,8 +58,16 @@ class Auth2Controller extends Controller
         return view('Auth.mydatalogin', compact('response'));
     }
 
-    public function editProfile(Request $request)
+    public function editProfile($user_id)
     {
-        $response = Http::post('https://listwisata.herokuapp.com/api/edit/{user_id}', $request->input())->json();
+        $response = Http::get('https://listwisata.herokuapp.com/api/edit/' . $user_id)->json();
+
+        return view('Auth.editprofile', compact('response'));
+    }
+
+    public function updateProfile(Request $request, $user_id)
+    {
+        Http::put('https://listwisata.herokuapp.com/api/edit/' .  $user_id, $request->input())->json();
+        return redirect()->back();
     }
 }

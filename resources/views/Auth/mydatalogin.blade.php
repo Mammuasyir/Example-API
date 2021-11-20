@@ -43,6 +43,7 @@
                         <th scope="col">Alamat</th>
                         <th scope="col">Telp</th>
                         <th scope="col">Photo</th>
+                        <th scope="col">action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +55,9 @@
                         <td>{{ $response['data']['alamat'] }}</td>
                         <td>{{ $response['data']['telp'] }}</td>
                         <td>{{ $response['data']['photo'] }}</td>
+                        <td width="270px" class="text-center">
+                        <a href="/editprofile" class="btn btn-warning">edit</a>  
+                        </td>
         </tr>
         </tbody>
         </table>

@@ -35,7 +35,8 @@ Route::get('/my-register', [Auth2Controller::class, 'Myregister']);
 Route::post('/register', [Auth2Controller::class, 'register']);
 Route::get('/mylogin',[Auth2Controller::class, 'loginMyApi']);
 Route::post('/mydata-login', [Auth2Controller::class, 'DataloginMyApi']);
-Route::put('/editprofile',[Auth2Controller::class, 'editProfile']);
+Route::get('/editprofile',[Auth2Controller::class, 'editProfile']);
+Route::put('/update',[Auth2Controller::class, 'updateProfile']);
 
 
 
