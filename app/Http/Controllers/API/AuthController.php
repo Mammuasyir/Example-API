@@ -204,6 +204,17 @@ class AuthController extends Controller
         ], Response::HTTP_OK);
     }
 
+    public function getAllUser()
+    {
+        $user = User::all();
+
+        return response()->json([
+            'status'    => 1,
+            'pesan'    => "Berhasil mendapatkan semua user !",
+            'result'    => $user
+        ], Response::HTTP_OK);
+    }
+
     public function responError($sts, $pesan)
     {
         return response()->json([

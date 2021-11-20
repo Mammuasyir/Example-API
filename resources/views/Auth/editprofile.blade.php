@@ -37,7 +37,7 @@
 
 
         <div class="custome">
-            <form action="{{route('update', $response2->user_id)}}" method="post">
+            <form action="{{route('update', $response->user_id)}}" method="post">
                 @csrf
                 @method('PUT')
 
