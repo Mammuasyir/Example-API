@@ -37,6 +37,10 @@
 
 
         <div class="custome">
+        @if($response['status'] == 0)
+            <div class="alert alert-danger">{{$response['message']}}</div>
+        @endif
+
             <form action="/register" method="POST">
                 @csrf
                 <div class="mb-3">

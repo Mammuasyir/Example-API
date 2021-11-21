@@ -32,11 +32,11 @@ Route::get('/login',[Auth2Controller::class, 'login']);
 Route::post('/data-login', [Auth2Controller::class, 'Datalogin']);
 // Register and login api sendiri
 Route::get('/my-register', [Auth2Controller::class, 'Myregister']);
-Route::post('/register', [Auth2Controller::class, 'register']);
+Route::post('/register', [Auth2Controller::class, 'register']); 
 Route::get('/mylogin',[Auth2Controller::class, 'loginMyApi']);
-Route::post('/mydata-login', [Auth2Controller::class, 'DataloginMyApi']);
-Route::get('/editprofile/{user_id}',[Auth2Controller::class, 'editProfile'])->name('editprofile')->middleware('auth');
-Route::put('/update/{user_id}',[Auth2Controller::class, 'updateProfile'])->name('update')->middleware('auth');
+Route::post('/mydata-login', [Auth2Controller::class, 'DataloginMyApi'])->name('mydatalogin');
+Route::get('/editprofile/{user_id}',[Auth2Controller::class, 'editProfile'])->name('editprofile');
+Route::put('/update/{user_id}',[Auth2Controller::class, 'updateProfile'])->name('update');
 
 
 
