@@ -56,7 +56,7 @@
                         <td>{{ $response['data']['telp'] }}</td>
                         <td>{{ $response['data']['photo'] }}</td>
                         <td width="270px" class="text-center">
-                        <a href="{{route('editprofile', $response['result']['id'])}}" class="btn btn-warning">edit</a>  
+                        <a href="{{route('editprofile', $response['data']['id'])}}" class="btn btn-warning">edit</a>  
                         </td>
         </tr>
         </tbody>
