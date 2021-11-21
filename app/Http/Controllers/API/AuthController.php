@@ -149,7 +149,7 @@ class AuthController extends Controller
         return response()->json([
             'status'        => 1,
             'message'       => "Profile berhasil diupdate ! ",
-            'result'        => $user
+            'data'        => $user
         ], 200);
     }
 
@@ -188,7 +188,7 @@ class AuthController extends Controller
         return response()->json([
             'status'        => 1,
             'message'       => "Password Berhasil Diubah !",
-            'result'        => $user
+            'data'        => $user
         ], 200);
 
     }
@@ -200,7 +200,7 @@ class AuthController extends Controller
         return response()->json([
             'status'    => 1,
             'pesan'    => "Berhasil mendapatkan user !",
-            'result'    => $user
+            'data'    => $user
         ], Response::HTTP_OK);
     }
 
@@ -211,7 +211,7 @@ class AuthController extends Controller
         return response()->json([
             'status'    => 1,
             'pesan'    => "Berhasil mendapatkan semua user !",
-            'result'    => $user
+            'data'    => $user
         ], Response::HTTP_OK);
     }
 

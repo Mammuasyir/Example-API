@@ -5,6 +5,9 @@ namespace App\Http\Controllers\WEB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Prophecy\Doubler\Generator\Node\ReturnTypeNode;
+
+use function PHPUnit\Framework\returnSelf;
 
 class Auth2Controller extends Controller
 {
@@ -76,8 +79,9 @@ class Auth2Controller extends Controller
     {
         $response = Http::put('https://listwisata.herokuapp.com/api/edit/' .  $user_id, $request->input())->json();
 
-        if ($response['status'] == 1) {
-            return redirect()->back()->with('success','Profile berhasil diupdate !.');
-        }
+        if ($response['status'] == 0) {
+            return view('Auth.editprofile', compact('response'));
+        };
+        return view('Auth.mydatalogin', compact('response'));
     }
 }

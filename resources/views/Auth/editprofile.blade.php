@@ -40,25 +40,25 @@
 </div>
 @endif
         <div class="custome">
-            <form action="{{route('update', $response['result']['id'])}}" method="post">
+            <form action="{{route('update', $response['data']['id'])}}" method="post">
                 @csrf
                 @method('PUT')
 
                 <div class="mb-3">
                     <label for="" class="form-label">Email address</label>
-                    <input type="email" name="email" value="{{ $response['result']['email'] }}" class="form-control" id="" aria-describedby="emailHelp">
+                    <input type="email" name="email" value="{{ $response['data']['email'] }}" class="form-control" id="" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Name</label>
-                    <input type="text" name="name" value="{{ $response['result']['name'] }}" class="form-control" id="">
+                    <input type="text" name="name" value="{{ $response['data']['name'] }}" class="form-control" id="">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Alamat</label>
-                    <input type="text" name="alamat" value="{{ $response['result']['alamat'] }}" class="form-control" id="">
+                    <input type="text" name="alamat" value="{{ $response['data']['alamat'] }}" class="form-control" id="">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Telp</label>
-                    <input type="text" name="telp" value="{{ $response['result']['telp'] }}" class="form-control" id="">
+                    <input type="text" name="telp" value="{{ $response['data']['telp'] }}" class="form-control" id="">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

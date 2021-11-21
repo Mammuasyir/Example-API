@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [DoaController::class, 'Doa'])->name('Doa');
 Route::get('/post-data', [DoaController::class, 'Postdata']);
-Route::post('/posting', [DoaController::class, 'Posting']);
+Route::post('/posting', [DoaController::class, 'Posting']); 
 Route::get('/postingkate', [DoaController::class, 'Postingkate']);
 Route::post('/postingkategory', [DoaController::class, 'Postingkategory']); 
 Route::get('/Ict', [IctController::class, 'Ict'])->name('Ict');

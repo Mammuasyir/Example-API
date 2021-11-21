@@ -32,7 +32,7 @@
         <div class="container text-center padding">
             <h1>Data User</h1>
         </div>
-
+        <div class="text-center"> {{$response['message']}}</div>
         <div class="container pd">
             <table class="table">
                 <thead>
