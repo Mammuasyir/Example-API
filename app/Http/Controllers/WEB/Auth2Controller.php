@@ -45,7 +45,7 @@ class Auth2Controller extends Controller
             return view('Auth.myregister', compact('response'));
         };
 
-        return view('Auth.mylogin', compact('response'));
+        return view('Auth.mydatalogin', compact('response'));
     }
 
     public function loginMyApi()
