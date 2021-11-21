@@ -77,7 +77,7 @@ class Auth2Controller extends Controller
         $response = Http::put('https://listwisata.herokuapp.com/api/edit/' .  $user_id, $request->input())->json();
 
         if ($response['status'] == 1) {
-            return redirect()->back()->with('success','Data Berhasil Diubah.');
+            return redirect()->back()->with('success','Profile berhasil diupdate !.');
         }
     }
 }
