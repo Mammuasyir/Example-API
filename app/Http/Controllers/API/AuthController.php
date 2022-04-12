@@ -121,9 +121,9 @@ class AuthController extends Controller
 
     public function editProfile(Request $request, $user_id)
     {
-        $user = User::where('id',$user_id)->first();
+        $user = User::where('id', $user_id)->first();
 
-        if (!$user ) {
+        if (!$user) {
             return $this->responError(0, "Akun Tidak terdaftar !");
         }
 
@@ -158,17 +158,17 @@ class AuthController extends Controller
 
     public function changePassword(Request $request, $user_id)
     {
-        $user = User::where('id',$user_id)->first();
+        $user = User::where('id', $user_id)->first();
 
-        if (!$user ) {
+        if (!$user) {
             return $this->responError(0, "Akun Tidak terdaftar !");
         }
 
         if (!(Hash::check($request->password, $user->password))) {
             return $this->responError(0, "Password salah !");
         }
-        
-        if(strcmp($request->get('password'),$request->get('new_password')) == 0) {
+
+        if (strcmp($request->get('password'), $request->get('new_password')) == 0) {
             return response()->json([
                 'status'        => 0,
                 'message'       => "Password tidak boleh sama dengan password lama !",
@@ -179,21 +179,21 @@ class AuthController extends Controller
             'password'          => 'required',
             'new_password'      => 'required|confirmed'
         ]);
-            
+
         if ($validasi->fails()) {
             $val = $validasi->errors()->all();
             return $this->responError(0, $val[0]);
         }
-        
+
         $user->password = Hash::make($request->new_password);
-            $user->save();
+        $user->save();
 
         return response()->json([
             'status'        => 1,
             'message'       => "Password Berhasil Diubah !",
             'data'        => $user
         ], 200);
-
+        
     }
 
     public function getUser($user_id)
